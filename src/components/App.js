@@ -5,10 +5,13 @@ const App = () => {
   const [innerWidth, setInnerWidth] = useState(0);
 
  useEffect(() => {
-    if (innerWidth >= 50) return; 
+    if (innerWidth === 50) return;
 
     const timer = setTimeout(() => {
-      setInnerWidth(prev => prev + 10);
+      setInnerWidth(prev => {
+        if (prev >= 50) return prev;
+        return prev + 10;
+      });
     }, 1000);
 
     return () => clearTimeout(timer);
