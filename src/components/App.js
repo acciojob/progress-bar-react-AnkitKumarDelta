@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './../styles/App.css';
 
 const App = () => {
   const [innerWidth, setInnerWidth] = useState(0);
 
-  if (innerWidth < 100) {
-    setTimeout(() => {
-      setInnerWidth(innerWidth + 10);
+ useEffect(() => {
+    if (innerWidth >= 100) return; 
+
+    const timer = setTimeout(() => {
+      setInnerWidth(prev => prev + 10);
     }, 1000);
-  }
+
+    return () => clearTimeout(timer);
+  }, [innerWidth]);
 
   return (
     <div>
