@@ -1,1 +1,9 @@
-
+#barOuter{
+  height:20px;
+  width:400px;
+  background-color: #CDCDCD;
+}
+/* #barInner{
+    background-color: #0000FF;
+    height:100%;
+} */
