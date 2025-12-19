@@ -2,20 +2,25 @@ import React, { useState, useEffect } from "react";
 import './../styles/App.css';
 
 const App = () => {
+  const[progress, setProgress] = useState(0);
   const [innerWidth, setInnerWidth] = useState(0);
 
  useEffect(() => {
-    if (innerWidth === 50) return;
+    if (progress >= 50) return;
 
-    const timer = setTimeout(() => {
-      setInnerWidth(prev => {
-        if (prev >= 50) return prev;
-        return prev + 5;
-      });
+    const textTimer = setTimeout(() => {
+      setProgress(prev => prev + 5);
     }, 1000);
 
-    return () => clearTimeout(timer);
-  }, [innerWidth]);
+    const barTimer = setTimeout(() => {
+      setInnerWidth(prev => prev + 5);
+    }, 1000);
+
+    return () => {
+      clearTimeout(textTimer);
+      clearTimeout(barTimer);
+    };
+  }, [progress]);
 
   return (
     <div>
@@ -30,7 +35,7 @@ const App = () => {
           }}
         ></div>
       </div>
-      <p>{innerWidth*2}%</p>
+      <p>{progress*2}%</p>
     </div>
   );
 };
