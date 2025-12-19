@@ -10,7 +10,7 @@ const App = () => {
     const timer = setTimeout(() => {
       setInnerWidth(prev => {
         if (prev >= 50) return prev;
-        return prev + 10;
+        return prev + 5;
       });
     }, 1000);
 
@@ -30,7 +30,7 @@ const App = () => {
           }}
         ></div>
       </div>
-      <p>{innerWidth}%</p>
+      <p>{innerWidth*2}%</p>
     </div>
   );
 };
